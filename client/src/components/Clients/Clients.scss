@@ -1,0 +1,16 @@
+.client-records--container{
+    display: flex;
+    flex-direction: column;
+}
+
+.client-records__thead-row, .client-records__tbody-row{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+
+.client-records__thead-row-th, .client-records__tbody-row-td{
+    flex: 0 1 23%;
+}

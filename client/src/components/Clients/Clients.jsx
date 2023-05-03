@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import ClientRecord from "./ClientRecord";
 import { GET_CLIENTS } from "./Clients.gql";
 import "./Clients.scss"
 
@@ -26,26 +27,32 @@ const Clients = () => {
                 <div className="client-records__thead-row-th client-records__thead-row-th--phone">
                     Phone
                 </div>
-            </div>
-        )
-    }
-
-    const renderClientRecord = ({ id, name, email, phone }) => {
-
-        return (
-            <div className="client-records__tbody-row" key={id}>
-                <div className="client-records__tbody-row-td client-records__tbody-row-td--name">
-                    {name}
-                </div>
-                <div className="client-records__tbody-row-td client-records__tbody-row-td--email">
-                    {email}
-                </div>
-                <div className="client-records__tbody-row-td client-records__tbody-row-td--phone">
-                    {phone}
+                <div className="client-records__thead-row-th client-records__thead-row-th--action">
+                    Action
                 </div>
             </div>
         )
     }
+
+    // const renderClientRecord = ({ id, name, email, phone }) => {
+
+    //     return (
+    //         <div className="client-records__tbody-row" key={id}>
+    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--name">
+    //                 {name}
+    //             </div>
+    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--email">
+    //                 {email}
+    //             </div>
+    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--phone">
+    //                 {phone}
+    //             </div>
+    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--action">
+    //                 Delete
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
 
     return (
@@ -55,7 +62,7 @@ const Clients = () => {
                     renderClientsHeader()
                 }
                 {
-                    clientsRecords.map((client) => renderClientRecord(client))
+                    clientsRecords.map((client) => <ClientRecord key={client.id} client={client} />)
                 }
             </section>
         </section>
