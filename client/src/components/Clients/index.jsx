@@ -1,2 +1,3 @@
 import Clients from "./Clients";
-export { Clients };
+import { GET_CLIENTS } from "./Clients.gql";
+export { Clients, GET_CLIENTS };
