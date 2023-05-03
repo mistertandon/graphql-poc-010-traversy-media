@@ -85,3 +85,21 @@ mutation {
 }
 
 ```
+
+> Mutation query: Add Project
+
+```javascript
+mutation {
+  addProject(name: "project one", description: "description one", status: NOT_STARTED, clientId: "644f4b42a9d98dcaff5d0fa4") {
+    name
+  }
+}
+```
+
+```javascript
+mutation {
+ 	deleteProject(id: "6450a3799eea5c480a001e3f") {
+    id
+  }
+}
+```
