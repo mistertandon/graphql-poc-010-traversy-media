@@ -1,14 +1,13 @@
-import './App.scss'
+import './App.scss';
+import { Header, Clients } from "./components";
 
 function App() {
 
   return (
-
     <div>
-      Hello from React-Vite
+      <Header />
+      <Clients />
     </div>
-
-
   )
 }
 

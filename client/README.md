@@ -1,0 +1,1 @@
+npm i --save scss sass @apollo/client graphql react-ionicons
