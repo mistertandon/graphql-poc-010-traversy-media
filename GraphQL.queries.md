@@ -90,7 +90,12 @@ mutation {
 
 ```javascript
 mutation {
-  addProject(name: "project one", description: "description one", status: NOT_STARTED, clientId: "644f4b42a9d98dcaff5d0fa4") {
+  addProject(
+    name: "project one",
+    description: "description one",
+    status: NOT_STARTED,
+    clientId: "644f4b42a9d98dcaff5d0fa4"
+  ) {
     name
   }
 }
@@ -102,4 +107,24 @@ mutation {
     id
   }
 }
+```
+
+```javascript
+  mutation {
+  updateProject(
+    id: "6451d3879eccb87ee473a44b",
+    name: "project one updated",
+    description: "project one updated",
+    status: IN_PROGRESS
+  ) {
+    name
+    description
+    status
+    client {
+      name
+      email
+    }
+  }
+}
+
 ```
