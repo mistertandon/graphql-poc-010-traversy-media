@@ -1,14 +1,41 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { GET_CLIENTS } from "./Client.gql.query";
+import { ADD_CLIENT } from "./Client.gql.mutation";
 const ClientForm = () => {
+  const [formFields, setFormFields] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const [addClient] = useMutation(ADD_CLIENT, {
+    variables: { ...formFields },
+    update(cache, { data: { addClient } }) {
+      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+      cache.writeQuery({
+        query: GET_CLIENTS,
+        data: {
+          clients: [...clients, addClient],
+        },
+      });
+    },
+  });
+
+  console.log(useForm());
+
   const clientFormSubmitHandler = async (data) => {
+    console.log(data);
+    setFormFields({ name: data.name, email: data.email, phone: data.phone });
     const { name, email, phone } = data;
     console.log(name, email, phone);
+    addClient(name, email, phone);
   };
 
   return (
