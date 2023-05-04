@@ -1,32 +1,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import App from './App.jsx';
-import { Clients } from "./components";
+import { Clients, Project, ProjectMaster } from "./components";
 import './index.scss';
-
-const client = new ApolloClient({
-  uri: "http://localhost:8000/graphql",
-  cache: new InMemoryCache(),
-});
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    ),
+    element: <App />,
     children: [
       {
         path: "client",
-        element: (
-          <ApolloProvider client={client}>
-            <Clients />
-          </ApolloProvider>
-        ),
+        element: <Clients />,
+      },
+      {
+        path: "/",
+        element: <Project />,
+        children: [
+          {
+            path: "project",
+            element: <ProjectMaster />,
+          },
+        ]
       }
     ]
   }

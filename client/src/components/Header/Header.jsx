@@ -7,6 +7,7 @@ const Header = () => {
             <nav>
                 <ul>
                     <li><Link to={'client'}>Client</Link></li>
+                    <li><Link to={'project'}>Project</Link></li>
                 </ul>
             </nav>
         </header>
