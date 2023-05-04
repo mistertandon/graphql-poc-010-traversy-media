@@ -73,6 +73,23 @@ mutation {
 }
 ```
 
+> Mutation query: Update client
+
+```javascript
+mutation {
+  updateClient(
+    id: "645296e76ae48d03cee51b62",
+    email: "enggparveshtandon@gmail1.com",
+    phone: "+91-9650780713"
+  ) {
+    id
+    name
+    email
+    phone
+  }
+}
+```
+
 > Mutation query: Delete client
 
 ```javascript
