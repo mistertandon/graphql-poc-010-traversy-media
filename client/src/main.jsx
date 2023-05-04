@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.jsx';
-import { Client, Project, ProjectMaster } from "./components";
+import { Client, ClientForm, Project, ProjectMaster, ClientMaster } from "./components";
 import './index.scss';
 
 const router = createBrowserRouter([
@@ -11,8 +11,18 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "client",
+        path: "",
         element: <Client />,
+        children: [
+          {
+            path: "client",
+            element: <ClientMaster />,
+          },
+          {
+            path: "client/client-form",
+            element: <ClientForm />,
+          },
+        ]
       },
       {
         path: "/",
