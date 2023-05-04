@@ -1,9 +1,9 @@
-.client-records--container{
+.client-record--container{
     display: flex;
     flex-direction: column;
 }
 
-.client-records__thead-row, .client-records__tbody-row{
+.client-record__thead-row, .client-record__tbody-row{
     display: flex;
     flex-direction: row;
     column-gap: 1rem;
@@ -11,6 +11,6 @@
     padding-left: 1rem;
 }
 
-.client-records__thead-row-th, .client-records__tbody-row-td{
+.client-record__thead-row-th, .client-record__tbody-row-td{
     flex: 0 1 23%;
 }

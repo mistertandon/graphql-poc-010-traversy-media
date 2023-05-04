@@ -1,4 +1,4 @@
 import { Header } from "./Header";
-import { Clients } from "./Clients";
+import { Client } from "./Client";
 import { Project, ProjectMaster } from "./Project";
-export { Header, Clients, Project, ProjectMaster };
+export { Header, Client, Project, ProjectMaster };

@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
-import { GET_CLIENTS } from "./Clients.gql";
-import { DELETE_CLIENT } from "./Clients.gql.mutation";
+import { GET_CLIENTS } from "./Client.gql.query";
+import { DELETE_CLIENT } from "./Client.gql.mutation";
 
 const ClientRecord = ({ client: { id, name, email, phone } }) => {
 
@@ -18,17 +18,17 @@ const ClientRecord = ({ client: { id, name, email, phone } }) => {
     });
 
     return (
-        <div className="client-records__tbody-row" key={id}>
-            <div className="client-records__tbody-row-td client-records__tbody-row-td--name">
+        <div className="client-record__tbody-row" key={id}>
+            <div className="client-record__tbody-row-td client-record__tbody-row-td--name">
                 {name}
             </div>
-            <div className="client-records__tbody-row-td client-records__tbody-row-td--email">
+            <div className="client-record__tbody-row-td client-record__tbody-row-td--email">
                 {email}
             </div>
-            <div className="client-records__tbody-row-td client-records__tbody-row-td--phone">
+            <div className="client-record__tbody-row-td client-record__tbody-row-td--phone">
                 {phone}
             </div>
-            <button className="client-records__tbody-row-td client-records__tbody-row-td--action" onClick={deleteClient}>
+            <button className="client-record__tbody-row-td client-record__tbody-row-td--action" onClick={deleteClient}>
                 Delete
             </button>
 
