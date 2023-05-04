@@ -1,12 +1,14 @@
 import './App.scss';
-import { Header, Clients } from "./components";
+import { Outlet } from "react-router-dom";
+import { Header } from "./components";
+// import { Header, Clients } from "./components";
 
 function App() {
 
   return (
     <div>
       <Header />
-      <Clients />
+      <Outlet />
     </div>
   )
 }

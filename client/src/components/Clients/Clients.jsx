@@ -12,8 +12,6 @@ const Clients = () => {
 
     const { clients: clientsRecords } = data;
 
-    console.log(clientsRecords);
-
     const renderClientsHeader = () => {
 
         return (
@@ -33,27 +31,6 @@ const Clients = () => {
             </div>
         )
     }
-
-    // const renderClientRecord = ({ id, name, email, phone }) => {
-
-    //     return (
-    //         <div className="client-records__tbody-row" key={id}>
-    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--name">
-    //                 {name}
-    //             </div>
-    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--email">
-    //                 {email}
-    //             </div>
-    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--phone">
-    //                 {phone}
-    //             </div>
-    //             <div className="client-records__tbody-row-td client-records__tbody-row-td--action">
-    //                 Delete
-    //             </div>
-    //         </div>
-    //     )
-    // }
-
 
     return (
         <section className="client--container">

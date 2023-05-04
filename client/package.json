@@ -12,9 +12,13 @@
   "dependencies": {
     "@apollo/client": "^3.7.13",
     "graphql": "^16.6.0",
+    "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-ionicons": "^4.2.0"
+    "react-hook-form": "^7.43.9",
+    "react-ionicons": "^4.2.0",
+    "react-router-dom": "^6.11.1",
+    "sort-by": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
