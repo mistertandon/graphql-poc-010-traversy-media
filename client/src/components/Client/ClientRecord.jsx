@@ -33,7 +33,6 @@ const ClientRecord = ({ client: { id, name, email, phone } }) => {
         <button
           className="action__view"
           onClick={() => {
-            console.log('35');
             navigate(`/clients/${id}`)
           }}
         >
