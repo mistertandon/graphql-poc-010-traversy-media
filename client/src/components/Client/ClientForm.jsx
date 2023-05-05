@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { GET_CLIENTS } from "./Client.gql.query";
 import { ADD_CLIENT } from "./Client.gql.mutation";
 const ClientForm = () => {
+
+  // useParams();
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",

@@ -1,9 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from './App.jsx';
-import { Client, ClientForm, Project, ProjectMaster, ClientMaster } from "./components";
-import './index.scss';
+import App from "./App.jsx";
+import {
+  Client,
+  ClientMaster,
+  ClientView,
+  ClientForm,
+  Project,
+  ProjectMaster,
+} from "./components";
+import "./index.scss";
 
 const router = createBrowserRouter([
   {
@@ -15,14 +22,22 @@ const router = createBrowserRouter([
         element: <Client />,
         children: [
           {
-            path: "client",
+            path: "clients",
             element: <ClientMaster />,
           },
           {
-            path: "client/client-form",
+            path: "clients/:clientId",
+            element: <ClientView />,
+          },
+          // {
+          //   path: "client/:clientId/edit",
+          //   element: <ClientForm />,
+          // },
+          {
+            path: "clients/client-form",
             element: <ClientForm />,
           },
-        ]
+        ],
       },
       {
         path: "/",
@@ -32,13 +47,17 @@ const router = createBrowserRouter([
             path: "project",
             element: <ProjectMaster />,
           },
-        ]
-      }
-    ]
-  }
+        ],
+      },
+      {
+        path: "*",
+        element: <div>404</div>,
+      },
+    ],
+  },
 ]);
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

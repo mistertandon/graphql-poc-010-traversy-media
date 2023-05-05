@@ -6,7 +6,7 @@ const Header = () => {
             <h1>Project Management</h1>
             <nav>
                 <ul>
-                    <li><Link to={'client'}>Client</Link></li>
+                    <li><Link to={'clients'}>Client</Link></li>
                     <li><Link to={'project'}>Project</Link></li>
                 </ul>
             </nav>
