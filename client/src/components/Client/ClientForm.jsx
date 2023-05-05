@@ -1,22 +1,48 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@apollo/client";
-import { GET_CLIENTS } from "./Client.gql.query";
-import { ADD_CLIENT } from "./Client.gql.mutation";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_CLIENTS, GET_CLIENT, ADD_CLIENT, UPDATE_CLIENT } from "./index";
+
 const ClientForm = ({ isEdit = false }) => {
+  let skipOnMount = useRef(true);
+
   const { clientId } = useParams();
-  console.log("clientId", clientId);
+
+  const isEditAction = isEdit && clientId !== undefined ? true : false;
+
+  const [errorFlag, setErrorFlag] = useState(false);
+
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",
     phone: "",
   });
+
   const {
     register,
     handleSubmit,
+    setValue,
+
     formState: { errors },
   } = useForm();
+
+  useQuery(GET_CLIENT, {
+    variables: { id: clientId },
+    skip: !isEditAction,
+    onCompleted: (data) => {
+      console.log("completed : ", data);
+      const {
+        client: { name, email, phone },
+      } = data;
+      setValue("name", name);
+      setValue("email", email);
+      setValue("phone", phone);
+    },
+    onError: (error) => {
+      setErrorFlag(true);
+    },
+  });
 
   const [addClient] = useMutation(ADD_CLIENT, {
     variables: { ...formFields },
@@ -31,15 +57,50 @@ const ClientForm = ({ isEdit = false }) => {
     },
   });
 
-  console.log(useForm());
-
+  const [updateClient] = useMutation(UPDATE_CLIENT, {
+    variables: { id: clientId, ...formFields },
+    update(cache, { data: { updateClient } }) {
+      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+      cache.writeQuery({
+        query: GET_CLIENTS,
+        data: {
+          clients: clients.map((client) => {
+            if (clientId === client.id) {
+              return updateClient;
+            } else {
+              return client;
+            }
+          }),
+        },
+      });
+    },
+  });
   const clientFormSubmitHandler = async (data) => {
-    console.log(data);
-    setFormFields({ name: data.name, email: data.email, phone: data.phone });
     const { name, email, phone } = data;
-    console.log(name, email, phone);
-    addClient(name, email, phone);
+
+    if (isEditAction) {
+      setFormFields({ id: clientId, name, email, phone });
+    } else {
+      setFormFields({ name, email, phone });
+      console.log("ADD: ", name, email, phone);
+    }
   };
+
+  useEffect(() => {
+    if (!skipOnMount.current) {
+      const { name, email, phone } = formFields;
+
+      if (isEditAction) {
+        updateClient(clientId, name, email, phone);
+      } else {
+        addClient(name, email, phone);
+      }
+    } else {
+      skipOnMount.current = false;
+    }
+  }, [formFields]);
+
+  if (errorFlag) return <div>Something went wrong...</div>;
 
   return (
     <section>

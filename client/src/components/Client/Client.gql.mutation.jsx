@@ -22,7 +22,7 @@ const UPDATE_CLIENT = gql`
     $email: String!
     $phone: String!
   ) {
-    updateClient(id: $id, name: $name, email: $eamil, phone: $phone) {
+    updateClient(id: $id, name: $name, email: $email, phone: $phone) {
       id
       name
       email
