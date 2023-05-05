@@ -1,10 +1,10 @@
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { GET_CLIENTS } from "./Client.gql.query";
 import { DELETE_CLIENT } from "./Client.gql.mutation";
 
 const ClientRecord = ({ client: { id, name, email, phone } }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     variables: { id },
     update(cache) {
@@ -33,12 +33,17 @@ const ClientRecord = ({ client: { id, name, email, phone } }) => {
         <button
           className="action__view"
           onClick={() => {
-            navigate(`/clients/${id}`)
+            navigate(`/clients/${id}`);
           }}
         >
           View
         </button>
-        <button className="action__edit" onClick={deleteClient}>
+        <button
+          className="action__edit"
+          onClick={() => {
+            navigate(`/clients/${id}/edit`);
+          }}
+        >
           Edit
         </button>
         <button className="action__delete" onClick={deleteClient}>

@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { GET_CLIENTS } from "./Client.gql.query";
 import { ADD_CLIENT } from "./Client.gql.mutation";
-const ClientForm = () => {
-
-  // useParams();
+const ClientForm = ({ isEdit = false }) => {
+  const { clientId } = useParams();
+  console.log("clientId", clientId);
   const [formFields, setFormFields] = useState({
     name: "",
     email: "",

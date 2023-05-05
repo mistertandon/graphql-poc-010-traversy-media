@@ -26,16 +26,16 @@ const router = createBrowserRouter([
             element: <ClientMaster />,
           },
           {
-            path: "clients/:clientId",
-            element: <ClientView />,
-          },
-          // {
-          //   path: "client/:clientId/edit",
-          //   element: <ClientForm />,
-          // },
-          {
             path: "clients/client-form",
             element: <ClientForm />,
+          },
+          {
+            path: "clients/:clientId/edit",
+            element: <ClientForm isEdit />,
+          },
+          {
+            path: "clients/:clientId",
+            element: <ClientView />,
           },
         ],
       },
